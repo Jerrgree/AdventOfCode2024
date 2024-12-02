@@ -1,7 +1,7 @@
 import kotlin.math.abs
 
 fun main() {
-    val input = readInput("..\\resources\\Day01")
+    val input = readInput("Day01")
     processInput(input)
 }
 
@@ -11,10 +11,9 @@ fun processInput(input: List<String>) {
     var sum = 0
 
     for (line in input) {
-        val values = line.split(' ')
-
-        left.add(values[0].toInt())
-        right.add(values[3].toInt())
+        val values = line.splitBySpace().toInt()
+        left.add(values[0])
+        right.add(values[1])
     }
 
     left.sort()
