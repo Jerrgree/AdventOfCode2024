@@ -1,21 +1,28 @@
+import kotlin.math.abs
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    val input = readInput("..\\resources\\Day01")
+    processInput(input)
+}
+
+fun processInput(input: List<String>) {
+    val left = arrayListOf<Int>()
+    val right = arrayListOf<Int>()
+    var sum = 0
+
+    for (line in input) {
+        val values = line.split(' ')
+
+        left.add(values[0].toInt())
+        right.add(values[3].toInt())
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+    left.sort()
+    right.sort()
+
+    for (i in 0..<left.count()) {
+        sum += abs(left[i] - right[i])
     }
 
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    // Read the input from the `src/Day01.txt` file.
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+    sum.println()
 }
