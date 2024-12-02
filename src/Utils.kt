@@ -23,3 +23,10 @@ fun Any?.println() = println(this)
 fun String.splitBySpace() = this.split("\\s+".toRegex())
 
 fun List<String>.toInt() = this.map{ it.toInt() }
+
+fun <T: Any> MutableMap<T, Int>.increment(key: T) {
+    if (key in this.keys)
+        this[key] = (this[key]!! + 1)
+    else
+        this[key] = 1
+}
