@@ -1,9 +1,10 @@
 @file:Suppress("unused")
 
 fun main() {
+
     val input = readInput("Day02")
-    processInputEnhanced(input)
     println("Day 02 Part 1: ${day02Pt1(input)}")
+    println("Day 02 Part 2: ${day02Pt2(input)}")
 }
 
 fun day02Pt1(input: List<String>): Int {
@@ -17,6 +18,34 @@ fun day02Pt1(input: List<String>): Int {
             count++
     }
     return count
+}
+
+fun day02Pt2(input: List<String>): Int {
+    var count = 0
+    for(line in input) {
+        val values = line
+            .splitBySpace()
+            .toInt()
+
+        if (bruteForceEntry(values))
+            count++
+    }
+    return count
+}
+
+fun bruteForceEntry(input: List<Int>): Boolean {
+    if (input.isIncreasing() || input.isDecreasing())
+        return true
+    for (i in 0..input.count()) {
+        var newInput = input.filterIndexed { index, _ ->
+            index != i
+        }
+
+        if (newInput.isIncreasing() || newInput.isDecreasing())
+            return true
+    }
+
+    return false
 }
 
 fun List<Int>.isIncreasing(): Boolean = processList(this) { curr: Int, next: Int ->
