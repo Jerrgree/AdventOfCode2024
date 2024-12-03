@@ -19,25 +19,21 @@ fun day02Pt1(input: List<String>): Int {
     return count
 }
 
-fun List<Int>.isIncreasing(): Boolean {
-    for (i in 1..<this.count()) {
-        val curr = this[i]
-        val prev = this[i - 1]
-        if (curr <= prev)
-            return false
-        if (curr - prev > 3)
-            return false
-    }
-    return true
+fun List<Int>.isIncreasing(): Boolean = processList(this) { curr: Int, next: Int ->
+    curr >= next || next - curr > 3
 }
 
-fun List<Int>.isDecreasing(): Boolean {
-    for (i in 1..<this.count()) {
-        val curr = this[i]
-        val prev = this[i - 1]
-        if (curr >= prev)
-            return false
-        if (prev - curr > 3)
+fun List<Int>.isDecreasing(): Boolean = processList(this) { curr: Int, next: Int ->
+    curr <= next || curr - next > 3
+}
+
+fun processList(list: List<Int>, isInvalid: (curr: Int, next: Int)->Boolean): Boolean {
+    val end = list.count() - 2
+    for (i in 0..end) {
+        val curr = list[i]
+        val next = list[i + 1]
+
+        if (isInvalid(curr, next))
             return false
     }
     return true
