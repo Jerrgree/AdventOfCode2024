@@ -48,7 +48,7 @@ private fun processLinePt2Recursive(score: Long, accumulate: Long, values: List<
     // Check all branches, adding and then multiplying and then concatenating
     return processLinePt2Recursive(score, accumulate + current, values.drop(1))
             || processLinePt2Recursive(score, accumulate * current, values.drop(1))
-            || processLinePt2Recursive(score, "$accumulate$current".toLong(), values.drop(1))
+            || processLinePt2Recursive(score, accumulate concat current, values.drop(1))
 }
 
 private fun parseLine(line: String): Pair<Long, List<Long>> {

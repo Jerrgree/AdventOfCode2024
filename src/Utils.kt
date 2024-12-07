@@ -27,6 +27,9 @@ fun String.splitBySpace() = this.split("\\s+".toRegex())
 fun List<String>.toInt() = this.map{ it.toInt() }
 fun List<String>.toLong() = this.map { it.toLong() }
 
+infix fun Int.concat(rhs: Int): Int = "$this$rhs".toInt()
+infix fun Long.concat(rhs: Long): Long = "$this$rhs".toLong()
+
 fun <T: Any> MutableMap<T, Int>.increment(key: T) {
     if (key in this.keys)
         this[key] = (this[key]!! + 1)
