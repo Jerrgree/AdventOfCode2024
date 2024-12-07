@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.io.path.Path
@@ -23,6 +25,7 @@ fun Any?.println() = println(this)
 fun String.splitBySpace() = this.split("\\s+".toRegex())
 
 fun List<String>.toInt() = this.map{ it.toInt() }
+fun List<String>.toLong() = this.map { it.toLong() }
 
 fun <T: Any> MutableMap<T, Int>.increment(key: T) {
     if (key in this.keys)
